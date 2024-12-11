@@ -12,14 +12,14 @@ resource "aws_vpc_peering_connection" "peer" {
   )
 }
 
-resource "aws_route" "public" {
+resource "aws_route" "public_peer" {
     count = var.peering_reqq ? 1 : 0
   route_table_id            = aws_route_table.public.id
   destination_cidr_block    = data.aws_vpc.default.cidr_block
   vpc_peering_connection_id = aws_vpc_peering_connection.peer[count.index].id
 }
 
-resource "aws_route" "private" {
+resource "aws_route" "private_peer" {
     count = var.peering_reqq ? 1 : 0
   route_table_id            = aws_route_table.private.id
   destination_cidr_block    = data.aws_vpc.default.cidr_block

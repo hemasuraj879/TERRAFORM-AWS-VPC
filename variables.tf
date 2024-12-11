@@ -22,3 +22,16 @@ variable "project_name" {
 variable "env" {
   default = ""
 }
+
+# public subnet
+variable "public_cidr" {
+  
+}
+
+variable "availability_zone" {
+  default = []
+}
+
+variable "map_public_ip_on_launch" {
+  default = false
+}

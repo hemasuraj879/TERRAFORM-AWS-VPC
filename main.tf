@@ -11,3 +11,18 @@ resource "aws_vpc" "vpc" {
     }
   )
 }
+
+resource "aws_subnet" "public" {
+  count = length(var.public_cidr)
+  vpc_id     = aws_vpc.vpc.id
+  cidr_block = var.public_cidr
+  availability_zone = var.availability_zone
+  map_public_ip_on_launch = var.map_public_ip_on_launch
+
+  tags = merge(
+    var.common_tags,
+    {
+      Name = "${var.project_name}-public-${var.availability_zone[count.index]}"
+    }
+  )
+}

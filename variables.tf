@@ -41,5 +41,9 @@ variable "private_cidr" {
   
 }
 
+variable "peering_reqq" {
+  default = false
+}
+
 
 
